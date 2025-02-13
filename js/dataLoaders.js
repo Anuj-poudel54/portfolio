@@ -30,8 +30,6 @@ function addWorkNdProjects(wrapper, { title, imageName, desc, githubLink = null,
     wrapper.innerHTML += htmlSkeleton;
 }
 
-const dataFile = "/data/data.json";
-
 fetch(dataFile, { method: "GET" })
     .then(res => res.json())
     .then(data => {
