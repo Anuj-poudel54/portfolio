@@ -1,83 +1,66 @@
 {
     "works": [
         {
-            "title": "title1",
-            "imageName": "title1",
-            "desc": "desc",
-            "webLink": "webLinklink"
+            "title": "Toolmetics",
+            "imageName": "toolmetics.jpg",
+            "desc": "Website that provides whatsapp bulk message service for any business",
+            "webLink": "https://www.toolmetics.com"
         },
         {
-            "title": "title1",
-            "imageName": "title1",
-            "desc": "desc",
-            "webLink": "webLinklink"
+            "title": "Sahaj Mahila Sambriddhi",
+            "imageName": "sahajmahila.jpg",
+            "desc": "Coorporation's robust website that have in built CMS with dynamic UI. Feature for writing and publishing blogs.",
+            "webLink": "https://sahajmahilasambriddhi.coop.np/en/"
         },
         {
-            "title": "title1",
-            "imageName": "title1",
-            "desc": "desc",
-            "githubLink": "gitlink"
+            "title": "Devam Career Hub",
+            "imageName": "dch.jpg",
+            "desc": "Education and career consultancy porfolio website. Contain WYSIWYG blogging",
+            "webLink": "https://https://devamcareerhub.com/"
         },
         {
-            "title": "title1",
-            "imageName": "title1",
-            "desc": "desc",
-            "githubLink": "gitlink",
-            "webLink": "webLinklink"
-        },
-        {
-            "title": "title1",
-            "imageName": "title1",
-            "desc": "desc",
-            "githubLink": "gitlink",
-            "webLink": "webLinklink"
-        },
-        {
-            "title": "title1",
-            "imageName": "title1",
-            "desc": "desc",
-            "githubLink": "gitlink",
-            "webLink": "webLinklink"
+            "title": "Bigefforts",
+            "imageName": "bigefforts.jpg",
+            "desc": "Australina based cleaning service provider website. Has dynamic content and admin panel in bult to update most of the parts",
+            "webLink": "https://www.bigeffortsservices.com.au/"
         }
     ],
     "projects": [
-        {
-            "title": "title1",
-            "imageName": "title1",
-            "desc": "desc",
-            "githubLink": "gitlink",
-            "webLink": "webLinklink"
+          {
+            "title": "ALPR",
+            "imageName": "alpr.jpg",
+            "desc": "Automatic License Plate Recognizion system which can detect license plate from a image and recognize the characters. YOLOv8 with custom trained CNN model with EMNIST dataset is used.",
+            "githubLink": "https://github.com/prajwal-code22/ALPR"
         },
         {
-            "title": "title1",
-            "imageName": "title1",
-            "desc": "desc",
-            "githubLink": "gitlink",
-            "webLink": "webLinklink"
+            "title": "Fake News Detection",
+            "imageName": "fakenewsdetection.jpg",
+            "desc": "Supervised model that uses logistic regression for detecting if the news is fake or genuine. It uses title, author, and text content as attribute to predict",
+            "githubLink": "https://github.com/Anuj-poudel54/fake-news-detection"
         },
         {
-            "title": "title1",
-            "imageName": "title1",
-            "desc": "desc",
-            "githubLink": "gitlink",
-            "webLink": "webLinklink"
+            "title": "Maiboard",
+            "imageName": "maiboard.jpg",
+            "desc": "A android mobile application developed using Java. It was project developed during Janakpur Hackathon 2023. It has feature of translation maithili to english and vice versa and live OCR.",
+            "githubLink": "https://github.com/Anuj-poudel54/MaiKeyboard"
         },
         {
-            "title": "title1",
-            "imageName": "title1",
-            "desc": "desc",
-            "webLink": "webLinklink"
+            "title": "Passsaver",
+            "imageName": "passsaver.jpg",
+            "desc": "Pyhon script that stores and retrieve password on demand. Stores password in sqlite db. Basic Caeser cipher ecrypter is used, so it is unspoken to not use",
+            "githubLink": "https://github.com/Anuj-poudel54/passsaver/"
         },
         {
-            "title": "title1",
-            "imageName": "title1",
-            "desc": "desc"
+            "title": "YT like Clone",
+            "imageName": "ytclone.jpg",
+            "desc": "Youtube like application. Experimentation project to probe the video segmentation using ffmpeg",
+            "githubLink": "https://github.com/Anuj-poudel54/YT-Clone"
         },
         {
-            "title": "title1",
-            "imageName": "title1",
-            "desc": "desc",
-            "githubLink": "gitlink"
+            "title": "Mini Hotloader",
+            "imageName": "hotloader.jpg",
+            "desc": "Script that watches a directory or file if it has changed. If changed then runs given command automatically i.e, external hot reload.",
+            "githublink": "https://github.com/Anuj-poudel54/mini_hotloader"
         }
     ]
 }
