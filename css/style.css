@@ -6172,4 +6172,7 @@ h6 {
   font-size: 12px;
 }
 
-/*# sourceMappingURL=style.css.map */
+a.link {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
