@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Anuj Poudel - Backend Engineer & AI/ML Specialist. Building scalable systems and exploring production AI. Available for roles, consulting, and collaboration.">
+    <meta name="keywords" content="backend engineer, Python, Django, AI, machine learning, software engineer">
+    <meta name="author" content="Anuj Poudel">
+    <meta name="theme-color" content="#0F172A">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%236366F1'>A</text></svg>">
+    
+    <!-- Preload critical font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Anuj Poudel - Backend Engineer & AI/ML Specialist">
+    <meta property="og:description" content="Building scalable systems and exploring production AI applications.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://anujpoudel.com">
+    <meta property="og:image" content="https://anujpoudel.com/og-image.png">
+    
+    <title>Anuj Poudel - Backend Engineer & AI/ML Specialist</title>
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- header-start -->
+    <header>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid ">
+                    <div class="header_bottom_border">
+                        <div class="row align-items-center">
+                            <div class="col-xl-3 col-lg-2">
+                                <div class="logo">
+                                    <a href="/">
+                                        <strong style="color: #DB9A64; font-size: 3rem;">
+                                            &LeftAngleBracket;&Alpha;n&upsilon;&jcirc;&RightAngleBracket;
+                                        </strong>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-7">
+                                <div class="main-menu  d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a href="/">home</a></li>
+                                            <li><a href="#works_area">Works</a></li>
+                                            <li><a href="#personal_project_area">Projects</a></li>
+
+                                            <!-- <li><a href="#">pages <i class="ti-angle-down"></i></a>
+                                                <ul class="submenu">
+                                                    <li><a href="works_details.html">work details</a></li>
+                                                    <li><a href="elements.html">elements</a></li>
+                                                </ul>
+                                            </li> -->
+                                            <li><a href="#about_area">about</a></li>
+                                            <li><a href="#contact_area">Contact</a></li>
+                                            <li><a href="#" class="disabled" aria-disabled="true">blog</a></li>
+                                            <!-- <li><a href="contact.html">Contact</a></li> -->
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                                <div class="Appointment">
+                                    <div class="book_btn d-none d-lg-block">
+                                        <a target="_blank" download type="application/pdf"
+                                            href="https://anuj-poudel54.github.io/db/resume.pdf">Resume <i
+                                                class="ml-1 fa fa-download"> </i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+    <!-- slider_area_start -->
+    <div class="slider_area">
+        <div class="single_slider  d-flex align-items-center slider_bg_1">
+            <div class="container">
+                <div class="row align-items-center position-relative">
+                    <div class="col-lg-9">
+                        <div class="slider_text">
+                            <h3>Hi there, I am Anuj <br>
+                                <span>Software Engineer</span>
+                            </h3>
+                            <a class="boxed-btn3-line" href="#works_area">View Works</a>
+                        </div>
+                    </div>
+                    <!-- <div class="my_img d-none d-lg-block"> -->
+                    <!-- My picture -->
+                    <!-- <img src="img/about/my_img.png" alt=""> -->
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- slider_area_end -->
+
+    <div class="download_area" id="about_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-10">
+                    <div class="download_text">
+                        <h3>About me </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="download_left">
+                        <p>
+
+                            I am a software engineer based on Nepal.
+                            I have accumulated experiences doing freelances building robust application for variety of
+                            clients and some personal projects with varying domain. Currently working at <a
+                                target="_blank" class="link" href="http://vidhypro.com/"> vidhypro crafts (F1Soft
+                                vertical) </a>. You
+                            can see my
+                            <a class="link" href="#works_area">works</a> and <a class="link"
+                                href="#personal_project_area">Personal
+                                projects</a> below.
+                        </p>
+                        <p>
+                            I am a full-stack developer more skewed toward <strong>backend</strong> and
+                            <strong>Artificial Intelligence</strong>.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1 col-md-6">
+                    <div class="progress_skills section_title">
+                        <h3>Skills</h3>
+                        <div class="skills d-flex flex-wrap" style="gap: .2rem;">
+
+                            <button type="button" disabled class="btn btn-warning">Backend</button>
+                            <button type="button" disabled class="btn btn-warning">Machine Learning</button>
+                            <hr>
+                            <button type="button" disabled class="btn btn-warning">Python</button>
+                            <button type="button" disabled class="btn btn-warning">Django</button>
+                            <button type="button" disabled class="btn btn-warning">Pytorch</button>
+                            <button type="button" disabled class="btn btn-warning">JavaScript</button>
+                            <button type="button" disabled class="btn btn-warning">ExpressJs</button>
+                            <button type="button" disabled class="btn btn-warning">ReactJs</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- service_area start  -->
+    <div class="service_area section" id="works_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section_title mb-50">
+                        <h3>Works</h3>
+                        <p>Project that i have completed for clients colaborating with my other mates.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row works-wrapper">
+            </div>
+        </div>
+    </div>
+    <!-- service_area end  -->
+
+    <!-- gallery_area start  -->
+    <div class="service_area section" id="personal_project_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section_title mb-50">
+                        <h3>Personal Projects</h3>
+                        <p> Some personal project that i have worked on for learning or just to create some
+                            utility that helps in my daily life. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row project-wrapper">
+            </div>
+        </div>
+    </div>
+    <!-- gallery_area end  -->
+
+    <!-- footer start -->
+    <footer class="footer">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="lets_talk" id="contact_area">
+                            <h3>Let’s Connect and Talk</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="https://github.com/Anuj-poudel54/" target="_blank"
+                            class="single_links d-flex justify-content-between align-items-center">
+                            <span>Github</span>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a target="_blank" href="https://www.linkedin.com/in/anuj--poudel/"
+                            class="single_links d-flex justify-content-between align-items-center">
+                            <span>Linkedin</span>
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a href="https://www.facebook.com/Rewat.poudel.35" target="_blank"
+                            class="single_links d-flex justify-content-between align-items-center">
+                            <span>Facebook</span>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a href="mailto:anujpoudel54@gmail.com" target="_blank"
+                            class="single_links d-flex justify-content-between align-items-center">
+                            <span>Email me</span>
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                            template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--/ footer end  -->
+    <script>
+        // Configuration script
+        const dataFile = "https://anuj-poudel54.github.io/db/portfolioData.json";
+        // const dataFile = "/data/data.json";
+    </script>
+
+    <script src="js/dataLoaders.js"></script>
+
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/jquery.slicknav.min.js"></script>
+    <script src="js/slick.min.js"></script>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
