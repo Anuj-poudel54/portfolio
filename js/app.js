@@ -1,376 +1,239 @@
-/**
- * Portfolio Application
- * Modern, performance-optimized vanilla JavaScript
- */
+'use strict';
 
-// DOM Elements
-const elements = {
-    header: document.querySelector('.header'),
-    navToggle: document.querySelector('.nav-toggle'),
-    navList: document.getElementById('nav-list'),
-    navLinks: document.querySelectorAll('.nav-link'),
-    featuredWorks: document.getElementById('featured-works'),
-    personalProjects: document.getElementById('personal-projects'),
-    year: document.getElementById('year'),
+// GitHub is the source of truth; the bundled snapshot is an HTTP-only fallback.
+const DATA_URL = 'https://anuj-poudel54.github.io/db/portfolioData.json';
+const FALLBACK_DATA_URL = 'data/data.json';
+// Older entries in the public feed predate category/tag fields.
+const PROJECT_METADATA = {
+    'alpr.jpg': { category: 'ai', tags: ['YOLOv8', 'CNN', 'Computer vision'] },
+    'fakenewsdetection.jpg': { category: 'ai', tags: ['Machine learning', 'NLP'] },
+    'maiboard.jpg': { category: 'mobile', tags: ['Java', 'Android', 'OCR'] },
+    'passsaver.jpg': { category: 'tools', tags: ['Python', 'SQLite', 'CLI'] },
+    'ytclone.jpg': { category: 'tools', tags: ['FFmpeg', 'Video processing'] },
+    'hotloader.jpg': { category: 'tools', tags: ['Developer tooling', 'Automation'] },
 };
+const $ = (selector) => document.querySelector(selector);
+const navToggle = $('.nav-toggle');
+const navList = $('#nav-list');
+const projectFilters = $('.project-filters');
+let personalProjects = [];
+let selectedFilter = 'all';
 
-// Application State
-const state = {
-    isMenuOpen: false,
-    projects: {
-        works: [],
-        projects: [],
-    },
-};
+document.documentElement.classList.add('js-enabled');
+$('#year').textContent = new Date().getFullYear();
 
-/**
- * Initialize Application
- */
-function init() {
-    setYear();
-    setupEventListeners();
-    fetchAndRenderProjects();
-    setupIntersectionObserver();
-    setupScrollEffects();
+function setMenu(open, restoreFocus = false) {
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    navList.classList.toggle('is-open', open);
+    if (restoreFocus) navToggle.focus();
 }
+navToggle.hidden = false;
+navToggle.addEventListener('click', () => setMenu(navToggle.getAttribute('aria-expanded') !== 'true'));
+navList.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setMenu(false);
+});
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') setMenu(false, true);
+});
+document.addEventListener('click', (event) => {
+    if (!event.target.closest('nav')) setMenu(false);
+});
+document.addEventListener('focusin', (event) => {
+    if (!event.target.closest('nav')) setMenu(false);
+});
+window.matchMedia('(min-width: 541px)').addEventListener('change', () => setMenu(false));
 
-/**
- * Set current year in footer
- */
-function setYear() {
-    if (elements.year) {
-        elements.year.textContent = new Date().getFullYear();
-    }
+const themeButton = $('.theme-toggle');
+function updateThemeButton() {
+    const isDark = document.documentElement.dataset.theme === 'dark';
+    themeButton.setAttribute('aria-label', `Switch to ${isDark ? 'light' : 'dark'} theme`);
+    themeButton.title = themeButton.getAttribute('aria-label');
+    $('meta[name="theme-color"]').content = isDark ? '#111411' : '#f7f8f2';
 }
-
-/**
- * Setup Event Listeners
- */
-function setupEventListeners() {
-    // Mobile menu toggle
-    if (elements.navToggle) {
-        elements.navToggle.addEventListener('click', toggleMobileMenu);
-    }
-
-    // Navigation links
-    elements.navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            closeMobileMenu();
-            setActiveNavLink(link);
-        });
-    });
-
-    // Handle keyboard ESC for menu
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && state.isMenuOpen) {
-            closeMobileMenu();
-        }
-    });
-}
-
-/**
- * Toggle Mobile Menu
- */
-function toggleMobileMenu() {
-    state.isMenuOpen = !state.isMenuOpen;
-    elements.navToggle.setAttribute('aria-expanded', state.isMenuOpen);
-    elements.navList.setAttribute('aria-expanded', state.isMenuOpen);
-}
-
-/**
- * Close Mobile Menu
- */
-function closeMobileMenu() {
-    if (state.isMenuOpen) {
-        state.isMenuOpen = false;
-        elements.navToggle.setAttribute('aria-expanded', 'false');
-        elements.navList.setAttribute('aria-expanded', 'false');
-    }
-}
-
-/**
- * Set Active Navigation Link
- */
-function setActiveNavLink(link) {
-    elements.navLinks.forEach(l => l.classList.remove('active'));
-    link.classList.add('active');
-}
-
-/**
- * Fetch and Render Projects
- */
-async function fetchAndRenderProjects() {
-    try {
-        const dataUrl = CONFIG.dataUrl || 'https://anuj-poudel54.github.io/db/portfolioData.json';
-
-        console.log('Fetching data from:', dataUrl);
-        elements.featuredWorks.innerHTML = '<p class="loading">Loading projects...</p>';
-        elements.personalProjects.innerHTML = '<p class="loading">Loading projects...</p>';
-
-        const response = await fetch(dataUrl);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log('Data loaded successfully:', data);
-
-        state.projects = data;
-
-        if (data.works && Array.isArray(data.works) && data.works.length > 0) {
-            renderFeaturedWorks(data.works);
-        } else {
-            elements.featuredWorks.innerHTML = '<p>No works available.</p>';
-        }
-
-        if (data.projects && Array.isArray(data.projects) && data.projects.length > 0) {
-            renderPersonalProjects(data.projects);
-        } else {
-            elements.personalProjects.innerHTML = '<p>No projects available.</p>';
-        }
-    } catch (error) {
-        console.error('Error fetching projects:', error);
-        elements.featuredWorks.innerHTML = `<p style="color: #e74c3c;">Error loading projects: ${error.message}</p>`;
-        elements.personalProjects.innerHTML = `<p style="color: #e74c3c;">Error loading projects: ${error.message}</p>`;
-    }
-}
-
-/**
- * Render Featured Works
- */
-function renderFeaturedWorks(works) {
-    const html = works.map(work => createFeaturedWorkCard(work)).join('');
-    elements.featuredWorks.innerHTML = html;
-    console.log(`Rendered ${works.length} featured works`);
-}
-
-/**
- * Create Featured Work Card
- */
-function createFeaturedWorkCard(work) {
-    const imageUrl = `img/workproject/${work.imageName}`;
-    const githubLink = work.githubLink || '';
-    const webLink = work.webLink || '';
-
-    return `
-        <article class="project-card fade-in">
-            <div>
-                <img 
-                    src="${imageUrl}" 
-                    alt="${escapeHtml(work.title)}" 
-                    class="project-image"
-                    loading="lazy"
-                    onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23e0e0e0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2216%22 fill=%22%23999%22%3EImage not available%3C/text%3E%3C/svg%3E'"
-                >
-            </div>
-            <div class="project-content">
-                <h3>${escapeHtml(work.title)}</h3>
-                <p class="project-desc">${escapeHtml(work.desc)}</p>
-                <div class="project-links">
-                    ${webLink ? `
-                        <a href="${escapeHtml(webLink)}" target="_blank" rel="noopener noreferrer" class="project-link">
-                            <span>→</span> Visit Site
-                        </a>
-                    ` : ''}
-                    ${githubLink ? `
-                        <a href="${escapeHtml(githubLink)}" target="_blank" rel="noopener noreferrer" class="project-link">
-                            <span>→</span> GitHub
-                        </a>
-                    ` : ''}
-                </div>
-            </div>
-        </article>
-    `;
-}
-
-/**
- * Render Personal Projects
- */
-function renderPersonalProjects(projects) {
-    const html = projects.map(project => createProjectSmallCard(project)).join('');
-    elements.personalProjects.innerHTML = html;
-    console.log(`Rendered ${projects.length} personal projects`);
-}
-
-/**
- * Create Project Small Card
- */
-function createProjectSmallCard(project) {
-    const imageUrl = `img/workproject/${project.imageName}`;
-    const githubLink = project.githubLink || '';
-    const webLink = project.webLink || '';
-
-    return `
-        <article class="project-small-card fade-in">
-            <img 
-                src="${imageUrl}" 
-                alt="${escapeHtml(project.title)}" 
-                class="project-small-image"
-                loading="lazy"
-                onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23e0e0e0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2216%22 fill=%22%23999%22%3EImage not available%3C/text%3E%3C/svg%3E'"
-            >
-            <div class="project-small-content">
-                <h3>${escapeHtml(project.title)}</h3>
-                <p>${escapeHtml(project.desc)}</p>
-                <div class="project-small-links">
-                    ${githubLink ? `
-                        <a 
-                            href="${escapeHtml(githubLink)}" 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            class="icon-link" 
-                            aria-label="GitHub repository for ${escapeHtml(project.title)}"
-                            title="GitHub"
-                        >
-                            →
-                        </a>
-                    ` : ''}
-                    ${webLink ? `
-                        <a 
-                            href="${escapeHtml(webLink)}" 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            class="icon-link" 
-                            aria-label="Website for ${escapeHtml(project.title)}"
-                            title="Website"
-                        >
-                            ↗
-                        </a>
-                    ` : ''}
-                </div>
-            </div>
-        </article>
-    `;
-}
-
-/**
- * Escape HTML to prevent XSS
- */
-function escapeHtml(text) {
-    const map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#039;',
-    };
-    return text.replace(/[&<>"']/g, m => map[m]);
-}
-
-/**
- * Setup Intersection Observer for Animations
- */
-function setupIntersectionObserver() {
-    if (!('IntersectionObserver' in window)) {
-        // Fallback for older browsers
-        document.querySelectorAll('[data-animate]').forEach(el => {
-            el.classList.add('visible');
-        });
-        return;
-    }
-
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px',
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('[data-animate]').forEach(el => {
-        observer.observe(el);
-    });
-}
-
-/**
- * Setup Scroll Effects
- */
-function setupScrollEffects() {
-    let lastScrollTop = 0;
-    let ticking = false;
-
-    function updateScrollEffects() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        // Add shadow to header on scroll
-        if (scrollTop > CONFIG.scrollThreshold) {
-            elements.header.classList.add('scrolled');
-        } else {
-            elements.header.classList.remove('scrolled');
-        }
-
-        lastScrollTop = scrollTop;
-        ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            window.requestAnimationFrame(updateScrollEffects);
-            ticking = true;
-        }
-    }, { passive: true });
-
-    // Initial check
-    updateScrollEffects();
-}
-
-/**
- * Handle smooth scroll for anchor links
- */
-document.addEventListener('click', (e) => {
-    const link = e.target.closest('a[href^="#"]');
-    if (!link || link.getAttribute('target') === '_blank') return;
-
-    const href = link.getAttribute('href');
-    if (href === '#') return;
-
-    const target = document.querySelector(href);
-    if (!target) return;
-
-    e.preventDefault();
-    closeMobileMenu();
-
-    target.scrollIntoView({ behavior: 'smooth' });
-
-    // Update active nav link
-    const navLink = document.querySelector(`a[href="${href}"]`);
-    if (navLink) {
-        setActiveNavLink(navLink);
-    }
+themeButton.hidden = false;
+updateThemeButton();
+themeButton.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('portfolio-theme', next); } catch (_) { /* Storage may be disabled. */ }
+    updateThemeButton();
 });
 
-/**
- * Performance: Lazy load images
- */
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src || img.src;
-                img.classList.add('loaded');
-                observer.unobserve(img);
-            }
-        });
+const copyButton = $('#copy-email');
+if (navigator.clipboard && window.isSecureContext) {
+    copyButton.hidden = false;
+    copyButton.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText('anujpoudel54@gmail.com');
+            $('#copy-status').textContent = 'Email address copied.';
+        } catch (_) {
+            $('#copy-status').textContent = 'Please select the email address above to copy it.';
+        }
     });
-
-    document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
 }
 
-/**
- * Start Application
- */
-document.addEventListener('DOMContentLoaded', init);
-
-// Handle dynamic content loading
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
+// Use textContent for portfolio content and allow only web URLs for project links.
+function element(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
 }
+function safeUrl(value) {
+    if (typeof value !== 'string' || !/^https?:\/\//i.test(value)) return null;
+    try {
+        const url = new URL(value);
+        return ['https:', 'http:'].includes(url.protocol) ? url.href : null;
+    } catch (_) { return null; }
+}
+function projectLinks(project) {
+    const links = element('div', 'project-links');
+    const options = [[project.webLink, 'Visit website'], [project.githubLink || project.githublink, 'View source']];
+    for (const [value, label] of options) {
+        const url = safeUrl(value);
+        if (!url) continue;
+        const link = element('a', '', label);
+        link.href = url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.setAttribute('aria-label', `${label}: ${project.title} (opens in a new tab)`);
+        const arrow = element('span', '', '↗');
+        arrow.setAttribute('aria-hidden', 'true');
+        link.append(arrow);
+        links.append(link);
+    }
+    return links;
+}
+function createWorkCard(work) {
+    const card = element('article', 'work-card');
+    const imageWrap = element('div', 'work-image-wrap');
+    const placeholder = () => imageWrap.replaceChildren(element('span', 'image-placeholder', work.title));
+    if (typeof work.imageName === 'string' && /^[\w.-]+$/.test(work.imageName)) {
+        const image = element('img');
+        image.alt = `${work.title} website preview`;
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        image.addEventListener('error', placeholder, { once: true });
+        image.src = `img/workproject/${work.imageName}`;
+        imageWrap.append(image);
+    } else placeholder();
+    const heading = element('div', 'work-card-top');
+    heading.append(element('h3', '', work.title), element('span', 'project-category', work.category || 'Web application'));
+    card.append(imageWrap, heading, element('p', '', work.desc), projectLinks(work));
+    return card;
+}
+function createProjectCard(project, index) {
+    const card = element('article', 'project-card');
+    const top = element('div', 'project-card-heading');
+    // Static decorative markup only; all data is added using DOM text nodes.
+    top.innerHTML = '<svg class="folder-icon" viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 7V5a1 1 0 0 1 1-1h5l2 3h9a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7Z"/></svg>';
+    top.append(element('span', 'project-index', String(index + 1).padStart(2, '0')));
+    const tags = element('div', 'project-tags');
+    if (Array.isArray(project.tags)) project.tags.forEach(tag => tags.append(element('span', '', tag)));
+    card.append(top, element('h3', '', project.title), element('p', '', project.desc), tags, projectLinks(project));
+    return card;
+}
+function renderProjects() {
+    const shown = personalProjects.filter(project => selectedFilter === 'all' || project.category === selectedFilter);
+    $('#personal-projects').replaceChildren(...shown.map(project => createProjectCard(project, personalProjects.indexOf(project))));
+    if (!shown.length) $('#personal-projects').append(element('p', 'loading', 'No projects in this category yet.'));
+    $('#project-status').textContent = `${shown.length} personal ${shown.length === 1 ? 'project' : 'projects'} shown.`;
+}
+projectFilters.addEventListener('click', event => {
+    const button = event.target.closest('button[data-filter]');
+    if (!button) return;
+    selectedFilter = button.dataset.filter;
+    projectFilters.querySelectorAll('button').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    renderProjects();
+});
+function isProject(item) {
+    return item && typeof item.title === 'string' && typeof item.desc === 'string';
+}
+async function fetchProjectData(url) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+    try {
+        const response = await fetch(url, { signal: controller.signal });
+        if (!response.ok) throw new Error('Project data is unavailable.');
+        const data = await response.json();
+        if (!data || !Array.isArray(data.works) || !Array.isArray(data.projects)) {
+            throw new Error('Invalid project data.');
+        }
+        return data;
+    } finally {
+        clearTimeout(timeout);
+    }
+}
+async function getProjectData() {
+    try {
+        return await fetchProjectData(DATA_URL);
+    } catch (error) {
+        // Browsers cannot fetch sibling JSON files from a file:// page.
+        if (window.location.protocol === 'file:') throw error;
+        return await fetchProjectData(FALLBACK_DATA_URL);
+    }
+}
+async function loadProjects() {
+    const containers = [$('#featured-works'), $('#personal-projects')];
+    projectFilters.hidden = true;
+    containers.forEach(container => {
+        container.setAttribute('aria-busy', 'true');
+        container.replaceChildren(element('p', 'loading', 'Loading projects…'));
+    });
+    try {
+        const data = await getProjectData();
+        const works = data.works.filter(isProject);
+        personalProjects = data.projects.filter(isProject).map(project => ({
+            ...PROJECT_METADATA[project.imageName],
+            ...project,
+        }));
+        $('#featured-works').replaceChildren(...works.map(createWorkCard));
+        if (!works.length) $('#featured-works').append(element('p', 'loading', 'New work will be added soon.'));
+        renderProjects();
+        projectFilters.hidden = personalProjects.length === 0;
+    } catch (_) {
+        containers.forEach(container => {
+            const message = element('div', 'load-error');
+            message.append(element('p', '', 'Project details couldn’t load. You can still explore my repositories on GitHub.'));
+            const link = element('a', 'text-link', 'Explore GitHub ↗');
+            link.href = 'https://github.com/Anuj-poudel54/';
+            const retry = element('button', '', 'Try again');
+            retry.type = 'button';
+            retry.addEventListener('click', loadProjects);
+            message.append(link, retry);
+            container.replaceChildren(message);
+        });
+    } finally {
+        containers.forEach(container => container.setAttribute('aria-busy', 'false'));
+    }
+}
+
+// Keep section navigation in sync with scrolling, including the project area.
+const navLinks = [...document.querySelectorAll('.nav-link')];
+let scrollScheduled = false;
+function updateNavigation() {
+    const position = window.scrollY + 160;
+    let active = null;
+    navLinks.forEach(link => {
+        const section = document.querySelector(link.getAttribute('href'));
+        if (section.offsetTop <= position) active = link;
+    });
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+        active = navLinks[navLinks.length - 1];
+    }
+    navLinks.forEach(link => {
+        if (link === active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+    });
+    scrollScheduled = false;
+}
+window.addEventListener('scroll', () => {
+    if (!scrollScheduled) {
+        scrollScheduled = true;
+        requestAnimationFrame(updateNavigation);
+    }
+}, { passive: true });
+window.addEventListener('resize', updateNavigation);
+updateNavigation();
+loadProjects();

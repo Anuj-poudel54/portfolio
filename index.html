@@ -1,275 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Anuj Poudel - Backend Engineer & AI/ML Specialist. Building scalable systems and exploring production AI. Available for roles, consulting, and collaboration.">
-    <meta name="keywords" content="backend engineer, Python, Django, AI, machine learning, software engineer">
+        content="Anuj Poudel is a backend engineer based in Nepal, building web applications with Python and Django and exploring applied machine learning.">
     <meta name="author" content="Anuj Poudel">
-    <meta name="theme-color" content="#0F172A">
-
-    <!-- Favicon -->
-    <link rel="shortcut icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%236366F1'>A</text></svg>">
-
-    <!-- Preload critical font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/main.css">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Anuj Poudel - Backend Engineer & AI/ML Specialist">
-    <meta property="og:description" content="Building scalable systems and exploring production AI applications.">
+    <meta name="theme-color" content="#111411">
+    <meta property="og:title" content="Anuj Poudel — Backend Engineer">
+    <meta property="og:description"
+        content="Thoughtful code. Reliable systems. Explore my work in backend engineering and applied machine learning.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://anujpoudel.com">
-    <meta property="og:image" content="https://anujpoudel.com/og-image.png">
-
-    <title>Anuj Poudel - Backend Engineer & AI/ML Specialist</title>
+    <title>Anuj Poudel — Backend Engineer</title>
+    <link rel="icon" href="img/favicon.ico">
+    <script>try { const theme = localStorage.getItem('portfolio-theme'); if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme; } catch (_) { }</script>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/app.js" defer></script>
 </head>
 
 <body>
-    <!-- Skip to main content link for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <!-- HEADER -->
-    <header class="header" role="banner">
-        <div class="header-container">
-            <div class="header-content">
-                <a href="/" class="logo" aria-label="Anuj Poudel - Home">
-                    <span class="logo-text">A.</span>
-                </a>
-
-                <nav class="nav-menu" role="navigation" aria-label="Main navigation">
-                    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-list">
-                        <span class="hamburger">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </span>
-                    </button>
-
-                    <ul id="nav-list" class="nav-list">
-                        <li><a href="#home" class="nav-link" data-section="home">Home</a></li>
-                        <li><a href="#work" class="nav-link" data-section="work">Work</a></li>
-                        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
-                        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
-                    </ul>
-                </nav>
-
-                <a href="https://anuj-poudel54.github.io/db/resume.pdf" class="btn btn-primary" target="_blank"
-                    rel="noopener noreferrer">
-                    Resume <span aria-hidden="true">↓</span>
-                </a>
-            </div>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="header">
+        <div class="container header-inner">
+            <a class="brand" href="#home" aria-label="Anuj Poudel, home"><span
+                    class="brand-mark">ap<span>.</span></span><span>Anuj Poudel</span></a>
+            <nav aria-label="Main navigation">
+                <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list" aria-label="Open navigation"
+                    hidden><span></span><span></span></button>
+                <ul id="nav-list" class="nav-list">
+                    <li><a class="nav-link" href="#work">Work</a></li>
+                    <li><a class="nav-link" href="#about">About</a></li>
+                    <li><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions"><button class="theme-toggle" type="button" aria-label="Switch to light theme"
+                    hidden><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
+                        stroke-width="1.5" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4" />
+                        <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" />
+                    </svg></button><a class="resume-link" href="https://anuj-poudel54.github.io/db/resume.pdf"
+                    target="_blank" rel="noopener noreferrer">Résumé <span aria-hidden="true">↗</span></a></div>
         </div>
     </header>
+    <main id="main-content" tabindex="-1">
+        <section class="hero container" id="home" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Backend engineer · Based in Nepal
+                </p>
+                <h1 id="hero-title">Thoughtful code.<br><span>Reliable systems.</span></h1>
+                <p class="hero-intro">Hi, I’m Anuj. I build the systems behind the experience.</p>
+                <p class="hero-description">From robust APIs to practical AI applications, I turn complex problems into
+                    software that’s clear, maintainable, and built to grow.</p>
+                <div class="hero-actions"><a class="button button-primary" href="#work">Explore my work <span
+                            aria-hidden="true">↘</span></a><a class="text-link" href="https://github.com/Anuj-poudel54/"
+                        target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
+            </div>
+            <div class="hero-visual" aria-label="Engineering focus: Python, Django, APIs, databases, and applied AI">
+                <div class="visual-label"><span>THE ENGINEERING MINDSET</span><span aria-hidden="true">01 / 03</span>
+                </div>
+                <div class="code-window">
+                    <div class="window-bar"><span class="window-dots"
+                            aria-hidden="true"><i></i><i></i><i></i></span><span>engineer.py</span><span
+                            class="window-language">Python</span></div>
+                    <pre><code><span class="code-muted"># A little about how I work</span>
+<span class="code-purple">class</span> <span class="code-yellow">BackendEngineer</span>:
+    name = <span class="code-green">"Anuj Poudel"</span>
+    toolkit = [<span class="code-green">"Python"</span>, <span class="code-green">"Django"</span>]
 
-    <!-- MAIN CONTENT -->
-    <main id="main-content">
-        <!-- HERO SECTION -->
-        <section id="home" class="hero" role="region" aria-label="Hero section">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1 class="hero-title">
-                            Backend Engineer &<br>
-                            <span class="accent">AI/ML Enthusiast</span>
-                        </h1>
-                        <p class="hero-subtitle">
-                            Building robust, scalable systems and exploring the intersection of artificial intelligence
-                            with production engineering. Experienced with Python, Django, and modern cloud
-                            infrastructure.
-                        </p>
-
-                        <div class="hero-ctas">
-                            <a href="#work" class="btn btn-primary">
-                                View My Work <span aria-hidden="true">→</span>
-                            </a>
-                            <a href="#contact" class="btn btn-secondary">
-                                Let's Talk
-                            </a>
-                        </div>
-
-                        <div class="hero-stats">
-                            <div class="stat">
-                                <div class="stat-value">3+</div>
-                                <div class="stat-label">Years Experience</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-value">10+</div>
-                                <div class="stat-label">Projects Shipped</div>
-                            </div>
-                            <!-- <div class="stat"> -->
-                            <!-- <div class="stat-value">4+</div> -->
-                            <!-- <div class="stat-label">Companies</div> -->
-                            <!-- </div> -->
-                        </div>
-                    </div>
-
-                    <div class="hero-visual">
-                        <div class="gradient-blob"></div>
-                    </div>
+    <span class="code-purple">def</span> <span class="code-yellow">build</span>(self, idea):
+        understand(idea)
+        design_for_clarity()
+        <span class="code-purple">return</span> ship_and_iterate()</code></pre>
+                    <div class="code-footer"><span><span class="status-dot" aria-hidden="true"></span> Always learning.
+                            Always building.</span><span aria-hidden="true">⌘</span></div>
+                </div>
+                <div class="system-flow" aria-hidden="true"><span><small>01</small>
+                        API</span><i>→</i><span><small>02</small> Logic</span><i>→</i><span><small>03</small>
+                        Data</span></div>
+                <p class="visual-caption">Good software starts beneath the surface.</p>
+            </div>
+            <div class="hero-bottom">
+                <p>Python <span>/</span> Django <span>/</span> PostgreSQL <span>/</span> Applied AI</p><a
+                    href="#work">Scroll to explore <span aria-hidden="true">↓</span></a>
+            </div>
+        </section>
+        <section class="section container" id="work" aria-labelledby="work-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow section-number">01 — Selected work</p>
+                    <h2 id="work-title">Built for real people.</h2>
+                </div>
+                <p>Business websites and applications.<br>From the first idea to the final implementation.</p>
+            </div>
+            <div id="featured-works" class="work-grid" aria-busy="true">
+                <p class="loading" role="status">Loading selected work…</p>
+            </div>
+            <noscript>
+                <p>Enable JavaScript to view project details, or <a class="text-link"
+                        href="https://github.com/Anuj-poudel54/">explore my work on GitHub ↗</a>.</p>
+            </noscript>
+        </section>
+        <section class="experiments-section" aria-labelledby="projects-title">
+            <div class="container section">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow section-number">02 — The side projects</p>
+                        <h2 id="projects-title">Curiosity, put into code.</h2>
+                    </div><a class="text-link" href="https://github.com/Anuj-poudel54?tab=repositories" target="_blank"
+                        rel="noopener noreferrer">All repositories <span aria-hidden="true">↗</span></a>
+                </div>
+                <div class="project-filters" role="group" aria-label="Filter personal projects" hidden><button
+                        type="button" data-filter="all" aria-pressed="true">All projects</button><button type="button"
+                        data-filter="ai" aria-pressed="false">AI & ML</button><button type="button" data-filter="tools"
+                        aria-pressed="false">Developer tools</button><button type="button" data-filter="mobile"
+                        aria-pressed="false">Mobile</button></div>
+                <p id="project-status" class="sr-only" role="status"></p>
+                <div id="personal-projects" class="projects-grid" aria-busy="true">
+                    <p class="loading" role="status">Loading personal projects…</p>
                 </div>
             </div>
         </section>
-
-        <!-- ABOUT SECTION -->
-        <section id="about" class="about" role="region" aria-label="About me">
-            <div class="container">
-                <div class="about-grid">
-                    <div class="about-text">
-                        <h2>About Me</h2>
-                        <p>
-                            I'm a backend engineer based in Nepal with a passion for building systems that scale. My
-                            journey has taken me through diverse domains—from e-commerce platforms to educational
-                            technology to enterprise SaaS—but my focus remains consistent: writing clean, performant,
-                            maintainable code that solves real problems.
-                        </p>
-                        <p>
-                            I specialize in backend architecture and systems design, with growing expertise in machine
-                            learning applications. I'm particularly interested in how AI can be productionized and
-                            integrated into real-world systems, and I spend time exploring PyTorch, distributed systems,
-                            and performance optimization.
-                        </p>
-                        <p>
-                            Currently, I work with <a href="http://vidhypro.com/" class="link" target="_blank"
-                                rel="noopener noreferrer">vidhypro crafts</a> on building robust backend infrastructure
-                            for enterprise applications. I'm always interested in discussing systems design challenges,
-                            AI/ML applications, or mentoring opportunities.
-                        </p>
-                    </div>
-
-                    <div class="tech-stack">
-                        <h3>Tech Stack</h3>
-
-                        <div class="stack-category">
-                            <h4>Core Backend</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">Django</span>
-                                <span class="tech-tag">PostgreSQL</span>
-                                <span class="tech-tag">Redis</span>
-                                <span class="tech-tag">REST APIs</span>
-                            </div>
-                        </div>
-
-                        <div class="stack-category">
-                            <h4>AI/ML</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">PyTorch</span>
-                                <span class="tech-tag">TensorFlow</span>
-                                <span class="tech-tag">scikit-learn</span>
-                                <span class="tech-tag">NLP</span>
-                                <span class="tech-tag">Computer Vision</span>
-                            </div>
-                        </div>
-
-                        <div class="stack-category">
-                            <h4>Frontend & Full Stack</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">HTML/CSS</span>
-                                <span class="tech-tag">Express.js</span>
-                            </div>
-                        </div>
-
-                        <div class="stack-category">
-                            <h4>DevOps & Infrastructure</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Docker</span>
-                                <span class="tech-tag">Kubernetes</span>
-                                <span class="tech-tag">AWS</span>
-                                <span class="tech-tag">CI/CD</span>
-                                <span class="tech-tag">Linux</span>
-                            </div>
-                        </div>
-                    </div>
+        <section class="section container about-grid" id="about" aria-labelledby="about-title">
+            <div class="about-copy">
+                <p class="eyebrow section-number">03 — Behind the code</p>
+                <h2 id="about-title">An engineer.<br>A lifelong learner.</h2>
+                <p>I’m a backend engineer based in Nepal. My work spans e-commerce, education, and enterprise
+                    applications, with a focus on clean architecture and software that solves real problems.</p>
+                <p>Python and Django are at the core of my toolkit. I’m also exploring how machine learning can move
+                    from experiments into useful, everyday applications.</p>
+                <p>I enjoy the details: a well-designed API, a faster database query, and making a complex system easier
+                    to understand.</p><a class="text-link" href="https://anuj-poudel54.github.io/db/resume.pdf"
+                    target="_blank" rel="noopener noreferrer">A closer look at my experience <span
+                        aria-hidden="true">↗</span></a>
+            </div>
+            <div class="skills-panel">
+                <div class="skills-heading"><span class="eyebrow">My toolkit</span><span
+                        aria-hidden="true">&lt;/&gt;</span></div>
+                <div class="skill-group">
+                    <h3><span>01</span> Backend & data</h3>
+                    <p>Python · Django · PostgreSQL · Redis · REST APIs</p>
                 </div>
+                <div class="skill-group">
+                    <h3><span>02</span> AI & machine learning</h3>
+                    <p>PyTorch · TensorFlow · scikit-learn · NLP · Computer vision</p>
+                </div>
+                <div class="skill-group">
+                    <h3><span>03</span> Infrastructure</h3>
+                    <p>Docker · Kubernetes · AWS · CI/CD · Linux</p>
+                </div>
+                <div class="skill-group">
+                    <h3><span>04</span> Across the stack</h3>
+                    <p>JavaScript · React · Express.js · HTML & CSS</p>
+                </div>
+                <div class="learning-note"><span class="status-dot" aria-hidden="true"></span> Exploring distributed
+                    systems & production AI</div>
             </div>
         </section>
-
-        <!-- WORK SECTION (Featured Projects & All Projects) -->
-        <section id="work" class="work" role="region" aria-label="Work and projects">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Featured Work</h2>
-                    <p>Client projects and applications I've architected and shipped</p>
+        <section class="contact-section" id="contact" aria-labelledby="contact-title">
+            <div class="container contact-inner">
+                <div>
+                    <p class="eyebrow section-number">Have something in mind?</p>
+                    <h2 id="contact-title">Let’s build<br>something useful<span>.</span></h2>
+                    <p>A project, an opportunity, or a good technical conversation.<br>I’d love to hear from you.</p>
                 </div>
-
-                <div id="featured-works" class="featured-works">
-                    <!-- Loaded via JS -->
-                </div>
-            </div>
-        </section>
-
-        <!-- PERSONAL PROJECTS SECTION -->
-        <section class="projects" role="region" aria-label="Personal projects">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Personal Projects</h2>
-                    <p>Experiments in AI, systems design, and building useful tools</p>
-                </div>
-
-                <div id="personal-projects" class="projects-grid">
-                    <!-- Loaded via JS -->
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT SECTION -->
-        <section id="contact" class="contact" role="region" aria-label="Contact">
-            <div class="container">
-                <div class="contact-content">
-                    <h2>Let's Build Something Great</h2>
-                    <p>
-                        I'm always interested in discussing new projects, technical challenges, or opportunities to
-                        collaborate. Whether you need someone to architect your backend infrastructure, explore AI/ML
-                        applications, or bring technical depth to your team—let's connect.
-                    </p>
-
-                    <div class="contact-links">
-                        <a href="https://github.com/Anuj-poudel54/" target="_blank" rel="noopener noreferrer"
-                            class="contact-link">
-                            <span class="icon">→</span> GitHub
-                        </a>
-                        <a href="https://linkedin.com/in/anuj--poudel/" target="_blank" rel="noopener noreferrer"
-                            class="contact-link">
-                            <span class="icon">→</span> LinkedIn
-                        </a>
-                        <a href="mailto:anujpoudel54@gmail.com" class="contact-link">
-                            <span class="icon">→</span> Email
-                        </a>
-                    </div>
+                <div class="contact-actions"><a class="email-link"
+                        href="mailto:anujpoudel54@gmail.com">anujpoudel54@gmail.com <span
+                            aria-hidden="true">↗</span></a><button id="copy-email" class="copy-email" type="button"
+                        hidden>Copy email address <span aria-hidden="true">⧉</span></button><span id="copy-status"
+                        class="copy-status" role="status"></span>
+                    <div class="social-links"><a href="https://github.com/Anuj-poudel54/" target="_blank"
+                            rel="noopener noreferrer">GitHub ↗</a><a href="https://linkedin.com/in/anuj--poudel/"
+                            target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
                 </div>
             </div>
         </section>
     </main>
-
-    <!-- FOOTER -->
-    <footer class="footer" role="contentinfo">
-        <div class="container">
-            <p>© <span id="year"></span> Anuj Poudel. All rights reserved.</p>
-        </div>
+    <footer class="container footer">
+        <p>© <span id="year">2026</span> Anuj Poudel</p>
+        <p>Made with care, in Nepal.</p><a href="#home">Back to top <span aria-hidden="true">↑</span></a>
     </footer>
-
-    <!-- Configuration -->
-    <script>
-        const CONFIG = {
-            dataUrl: "https://anuj-poudel54.github.io/db/portfolioData.json"
-        };
-    </script>
-
-    <!-- Scripts -->
-    <script src="js/app.js" defer></script>
 </body>
 
 </html>
