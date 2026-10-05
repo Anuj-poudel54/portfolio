@@ -1,0 +1,37 @@
+{
+  "toolmetics.jpg": {
+    "width": 1918,
+    "height": 862,
+    "src": "img/workproject/optimized/toolmetics.jpg-800.webp",
+    "srcset": "img/workproject/optimized/toolmetics.jpg-480.webp 480w, img/workproject/optimized/toolmetics.jpg-800.webp 800w, img/workproject/optimized/toolmetics.jpg-1120.webp 1120w",
+    "sizes": "(max-width: 540px) calc(100vw - 76px), (max-width: 800px) calc((100vw - 128px) / 2), (max-width: 1050px) calc((100vw - 184px) / 2), (max-width: 1256px) calc((100vw - 216px) / 2), 520px"
+  },
+  "checkseoai.png": {
+    "width": 1893,
+    "height": 863,
+    "src": "img/workproject/optimized/checkseoai.png-800.webp",
+    "srcset": "img/workproject/optimized/checkseoai.png-480.webp 480w, img/workproject/optimized/checkseoai.png-800.webp 800w, img/workproject/optimized/checkseoai.png-1120.webp 1120w",
+    "sizes": "(max-width: 540px) calc(100vw - 76px), (max-width: 800px) calc((100vw - 128px) / 2), (max-width: 1050px) calc((100vw - 184px) / 2), (max-width: 1256px) calc((100vw - 216px) / 2), 520px"
+  },
+  "sahajmahila.jpg": {
+    "width": 1916,
+    "height": 865,
+    "src": "img/workproject/optimized/sahajmahila.jpg-800.webp",
+    "srcset": "img/workproject/optimized/sahajmahila.jpg-480.webp 480w, img/workproject/optimized/sahajmahila.jpg-800.webp 800w, img/workproject/optimized/sahajmahila.jpg-1120.webp 1120w",
+    "sizes": "(max-width: 540px) calc(100vw - 76px), (max-width: 800px) calc((100vw - 128px) / 2), (max-width: 1050px) calc((100vw - 184px) / 2), (max-width: 1256px) calc((100vw - 216px) / 2), 520px"
+  },
+  "dch.jpg": {
+    "width": 1918,
+    "height": 860,
+    "src": "img/workproject/optimized/dch.jpg-800.webp",
+    "srcset": "img/workproject/optimized/dch.jpg-480.webp 480w, img/workproject/optimized/dch.jpg-800.webp 800w, img/workproject/optimized/dch.jpg-1120.webp 1120w",
+    "sizes": "(max-width: 540px) calc(100vw - 76px), (max-width: 800px) calc((100vw - 128px) / 2), (max-width: 1050px) calc((100vw - 184px) / 2), (max-width: 1256px) calc((100vw - 216px) / 2), 520px"
+  },
+  "bigefforts.jpg": {
+    "width": 1906,
+    "height": 872,
+    "src": "img/workproject/optimized/bigefforts.jpg-800.webp",
+    "srcset": "img/workproject/optimized/bigefforts.jpg-480.webp 480w, img/workproject/optimized/bigefforts.jpg-800.webp 800w, img/workproject/optimized/bigefforts.jpg-1120.webp 1120w",
+    "sizes": "(max-width: 540px) calc(100vw - 76px), (max-width: 800px) calc((100vw - 128px) / 2), (max-width: 1050px) calc((100vw - 184px) / 2), (max-width: 1256px) calc((100vw - 216px) / 2), 520px"
+  }
+}

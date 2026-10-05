@@ -16,8 +16,15 @@ const $ = (selector) => document.querySelector(selector);
 const navToggle = $('.nav-toggle');
 const navList = $('#nav-list');
 const projectFilters = $('.project-filters');
+const projectImageManifest = JSON.parse($('#project-image-manifest')?.textContent || '{}');
 let personalProjects = [];
 let selectedFilter = 'all';
+// The generated HTML is useful before JavaScript or the live feed is available.
+try {
+    const snapshot = JSON.parse($('#project-snapshot')?.textContent || '{}');
+    if (Array.isArray(snapshot.projects)) personalProjects = snapshot.projects.filter(isProject);
+} catch (_) { /* The live feed can still populate the page. */ }
+projectFilters.hidden = personalProjects.length === 0;
 
 document.documentElement.classList.add('js-enabled');
 $('#year').textContent = new Date().getFullYear();
@@ -114,8 +121,23 @@ function createWorkCard(work) {
         image.alt = `${work.title} website preview`;
         image.loading = 'lazy';
         image.decoding = 'async';
-        image.addEventListener('error', placeholder, { once: true });
-        image.src = `img/workproject/${work.imageName}`;
+        const originalSource = `img/workproject/${work.imageName}`;
+        const optimized = projectImageManifest[work.imageName];
+        if (optimized) {
+            image.width = optimized.width;
+            image.height = optimized.height;
+            image.sizes = optimized.sizes;
+            image.srcset = optimized.srcset;
+        }
+        image.addEventListener('error', () => {
+            if (image.hasAttribute('srcset')) {
+                image.removeAttribute('srcset');
+                image.removeAttribute('sizes');
+                image.addEventListener('error', placeholder, { once: true });
+                image.src = originalSource;
+            } else placeholder();
+        }, { once: true });
+        image.src = optimized?.src || originalSource;
         imageWrap.append(image);
     } else placeholder();
     const heading = element('div', 'work-card-top');
@@ -176,10 +198,11 @@ async function getProjectData() {
 }
 async function loadProjects() {
     const containers = [$('#featured-works'), $('#personal-projects')];
-    projectFilters.hidden = true;
     containers.forEach(container => {
         container.setAttribute('aria-busy', 'true');
-        container.replaceChildren(element('p', 'loading', 'Loading projects…'));
+        if (!container.querySelector('article')) {
+            container.replaceChildren(element('p', 'loading', 'Loading projects…'));
+        }
     });
     try {
         const data = await getProjectData();
@@ -194,6 +217,8 @@ async function loadProjects() {
         projectFilters.hidden = personalProjects.length === 0;
     } catch (_) {
         containers.forEach(container => {
+            // Keep the crawlable snapshot visible if both data requests fail.
+            if (container.querySelector('article')) return;
             const message = element('div', 'load-error');
             message.append(element('p', '', 'Project details couldn’t load. You can still explore my repositories on GitHub.'));
             const link = element('a', 'text-link', 'Explore GitHub ↗');
@@ -209,31 +234,45 @@ async function loadProjects() {
     }
 }
 
-// Keep section navigation in sync with scrolling, including the project area.
+// Observe visibility instead of forcing layout measurements on every scroll.
 const navLinks = [...document.querySelectorAll('.nav-link')];
-let scrollScheduled = false;
-function updateNavigation() {
-    const position = window.scrollY + 160;
-    let active = null;
-    navLinks.forEach(link => {
-        const section = document.querySelector(link.getAttribute('href'));
-        if (section.offsetTop <= position) active = link;
-    });
-    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
-        active = navLinks[navLinks.length - 1];
-    }
+let activeNavLink = null;
+function setActiveNavigation(active) {
+    if (active === activeNavLink) return;
+    activeNavLink = active;
     navLinks.forEach(link => {
         if (link === active) link.setAttribute('aria-current', 'location');
         else link.removeAttribute('aria-current');
     });
-    scrollScheduled = false;
 }
-window.addEventListener('scroll', () => {
-    if (!scrollScheduled) {
-        scrollScheduled = true;
-        requestAnimationFrame(updateNavigation);
-    }
-}, { passive: true });
-window.addEventListener('resize', updateNavigation);
-updateNavigation();
+if ('IntersectionObserver' in window) {
+    const sections = [
+        { element: $('#home'), link: null },
+        { element: $('#work'), link: navLinks[0] },
+        { element: $('.experiments-section'), link: navLinks[0] },
+        { element: $('#about'), link: navLinks[1] },
+        { element: $('#contact'), link: navLinks[2] },
+    ];
+    const visible = new Set();
+    let footerVisible = false;
+    const update = () => {
+        const current = sections.filter(section => visible.has(section.element)).at(-1);
+        if (footerVisible) setActiveNavigation(navLinks[2]);
+        else if (current) setActiveNavigation(current.link);
+    };
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) visible.add(entry.target);
+            else visible.delete(entry.target);
+        });
+        update();
+    }, { rootMargin: '-80px 0px -60% 0px' });
+    sections.forEach(section => observer.observe(section.element));
+    new IntersectionObserver(entries => {
+        footerVisible = entries[0].isIntersecting;
+        update();
+    }).observe($('.footer'));
+} else {
+    navLinks.forEach(link => link.addEventListener('click', () => setActiveNavigation(link)));
+}
 loadProjects();

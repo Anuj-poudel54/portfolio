@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://anuj-poudel.com.np/sitemap.xml
